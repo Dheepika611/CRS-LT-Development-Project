@@ -1,5 +1,10 @@
 package com.lt.crs.bean;
-
+/**
+ * 
+ * @author Dheepika, Himanshu, Sai, Nisha, Mamata
+ * This is the bean class for Course
+ *
+ */
 public class Course extends Student{
 
 	private int courseId;

@@ -1,5 +1,11 @@
 package com.lt.crs.bean;
 
+/**
+ * 
+ * @author Dheepika, Himanshu, Sai, Nisha, Mamata
+ * This Class is the bean class for Payment
+ *
+ */
 public class Payment {
 	
 private boolean paymentStatus;

@@ -1,5 +1,10 @@
 package com.lt.crs.bean;
-
+/**
+ * 
+ * @author Dheepika, Himanshu, Sai, Nisha, Mamata
+ * This is the bean class of ReportCard
+ *
+ */
 public class ReportCard {
 	
 private char grade;

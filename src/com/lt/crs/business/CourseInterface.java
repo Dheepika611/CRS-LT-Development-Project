@@ -8,6 +8,6 @@ package com.lt.crs.business;
  *
  */
 public interface CourseInterface {
-	public void addCourse();
-	public void displayCourse();
+	public void displayCourse(String username);
+	public void dropCourseFromStudent(String dropc);
 }

@@ -8,6 +8,5 @@ package com.lt.crs.business;
  *
  */
 public interface StudentInterface {
-	public void addCourseToStudent();
-	public void dropCourseFromStudent();
+	public void registerStudent();
 }

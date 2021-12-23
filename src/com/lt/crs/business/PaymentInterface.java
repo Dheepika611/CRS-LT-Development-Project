@@ -8,5 +8,5 @@ package com.lt.crs.business;
  *
  */
 public interface PaymentInterface {
-	public void calculateBill();
+	//public void calculateBill(String username);
 }

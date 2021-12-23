@@ -8,5 +8,5 @@ package com.lt.crs.business;
  *
  */
 public interface ReportCardInterface {
-	public void displayResult();
+	public void displayResult(String username);
 }

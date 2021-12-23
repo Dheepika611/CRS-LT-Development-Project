@@ -1,46 +1,60 @@
 package com.lt.crs.utils;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
+import java.util.Properties;
+/**
+ * @author Dheepika, Himanshu, Sai, Nisha, Mamata
+ * This class connects to the DB using the values configured in config.properties
+ */
 public class DBUtils {
-	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-	   static final String DB_URL = "jdbc:mysql://localhost/crs";
-	   
-	   static final String USER = "root";
-	   static final String PASS = "root";
-	   
-	 // Connection class
-	 public static Connection getConnection(){
-		   Connection conn = null;
-		   PreparedStatement stmt = null;
-		   
-		   try{			   
-			   Class.forName("com.mysql.jdbc.Driver");
-			      System.out.println("Connecting to database...");
-			      conn = DriverManager.getConnection(DB_URL,USER,PASS);
-			      System.out.println("Creating statement...");
-		   		}catch(SQLException se){
-			      se.printStackTrace();
-			   }catch(Exception e){
-			      //Handle errors for Class.forName
-			      e.printStackTrace();
-			   }finally{
-			      try{
-			         if(stmt!=null)
-			            stmt.close();
-			      }catch(SQLException se2){
-			      }
-//			      try{
-//			         if(conn!=null)
-//			            conn.close();
-//			      }catch(SQLException se){
-//			         se.printStackTrace();
-//			      }
-			   }
-			   System.out.println("Goodbye!");
-			return conn;
-			}
-	   }
+	public static Connection conn = null;
+	
+	/**
+	* getConnection() method is defined here
+	* Connection to the DB will be established here
+	* @exception ClassNotFound(), FileNotFund(), IOException()
+	*
+	*/
+	public static Connection getConnection() {
+	 if (conn != null)
+         return conn;
+     else {
+         try {
+         	Properties prop = new Properties();
+             InputStream inputStream = DBUtils.class.getClassLoader().getResourceAsStream("./config.properties");
+             prop.load(inputStream);
+             String driver = prop.getProperty("driver");
+             String url = prop.getProperty("url");
+             String user = prop.getProperty("user");
+             String password = prop.getProperty("password");
+             Class.forName(driver);
+             conn = DriverManager.getConnection(url, user, password);
+         } catch (ClassNotFoundException e) {
+             e.printStackTrace();
+         } catch (SQLException e) {
+             e.printStackTrace();
+         } catch (FileNotFoundException e) {
+             e.printStackTrace();
+         } catch (IOException e) {
+             e.printStackTrace();
+         }
+         return conn;
+     }
+
+ }
+
+//This method is used for closing the DB connection
+public void closeConnection() {
+	try {
+		conn.close();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}	   }
